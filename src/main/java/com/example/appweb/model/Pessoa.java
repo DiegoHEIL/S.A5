@@ -1,24 +1,18 @@
 package com.example.appweb.model;
+
+
 import javax.persistence.*;
 @Entity
 public class Pessoa {
     @Id
     private Integer id;
-
+    @Column(name="nome")
     private String name;
 
     private String sexo;
-    @OneToOne(mappedBy = "Person", cascade = CascadeType.ALL)
+
+    @OneToOne(mappedBy = "person")
     private ContaCorrentePF contaCorrentePF;
-
-    public ContaCorrentePF getContaCorrentePF() {
-        return contaCorrentePF;
-    }
-
-    public void setContaCorrentePF(ContaCorrentePF contaCorrentePF) {
-        this.contaCorrentePF = contaCorrentePF;
-    }
-
     public String getSexo() {
         return sexo;
     }
@@ -41,5 +35,13 @@ public class Pessoa {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public ContaCorrentePF getContaCorrentePF() {
+        return contaCorrentePF;
+    }
+
+    public void setContaCorrentePF(ContaCorrentePF contaCorrentePF) {
+        this.contaCorrentePF = contaCorrentePF;
     }
 }

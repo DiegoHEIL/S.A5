@@ -1,7 +1,6 @@
 package com.example.appweb.Controle;
 
 import com.example.appweb.model.AccountType;
-import com.example.appweb.model.Conta;
 import com.example.appweb.model.ContaCorrentePF;
 import com.example.appweb.model.Pessoa;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BancoController implements ContaCorrente{
+public class BancoController {
 
     @Autowired
     private BancoRepository bancoRepository;
@@ -19,8 +18,8 @@ public class BancoController implements ContaCorrente{
     private Controller controller;
 
     private Long number = 0L;
-    @Override
-    public Double sacar(Double quantidade, Conta conta) {
+
+    public Double sacar(Double quantidade, ContaCorrentePF conta) {
         return null;
     }
 
@@ -47,7 +46,7 @@ public class BancoController implements ContaCorrente{
         if(person != null && contaCorrentePF.getError() == null){
             number++;
             contaCorrentePF.setNumeroConta(number);
-            contaCorrentePF.setPerson(person);
+            //contaCorrentePF.setPerson(person);
             bancoRepository.save(contaCorrentePF);
         }else if(contaCorrentePF.getError() == null){
             message.append("\nPessoa ");
@@ -76,13 +75,13 @@ public class BancoController implements ContaCorrente{
     }
 
 
-    @Override
-    public void depositar(Double quantidade, Conta conta) {
+
+    public void depositar(Double quantidade, ContaCorrentePF conta) {
         Double total = conta.getSaldo() + quantidade ;
         conta.setSaldo(total);
     }
 
-    @Override
+
     public String transferir(Long contaOrigem, Long contaDestino, Double valor) {
         String message = "";
         ContaCorrentePF destino = bancoRepository.findById(contaDestino).get();
@@ -101,7 +100,7 @@ public class BancoController implements ContaCorrente{
         return message;
     }
 
-    @Override
+
     public Double consultaSaldo(ContaCorrentePF conta) {
         return conta.getSaldo();
     }

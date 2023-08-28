@@ -12,7 +12,7 @@ public class Controller {
 
     @Autowired
     private PessoaRepository personRepository;
-    private List<Pessoa> persons = new ArrayList<>();
+    private List<Pessoa> person = new ArrayList<>();
     private int id = 0;
 
     public Pessoa findPerson(String name){

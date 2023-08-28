@@ -1,5 +1,6 @@
 package com.example.appweb.model;
 
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,19 +12,27 @@ public class ContaCorrentePF{
     @Column(name = "numero_conta")
     private Long numeroConta;
     private Double saldo;
+
     @OneToOne
     @JoinColumn(name = "pessoa_id")
-
     private Pessoa person;
-
     @Column(name = "type")
     private AccountType accountType;
 
 
     //@Column
+    @Transient
     private Date dataAtualizacao;
-
+    @Transient
     private String error;
+
+    public Pessoa getPerson() {
+        return person;
+    }
+
+    public void setPerson(Pessoa person) {
+        this.person = person;
+    }
 
     public Date getDataAtualizacao() {
         return dataAtualizacao;
@@ -49,14 +58,14 @@ public class ContaCorrentePF{
         this.error = error;
     }
 
-    public Pessoa getPerson() {
+   /* public Pessoa getPerson() {
         return person;
     }
 
     public void setPerson(Pessoa person) {
         this.person = person;
     }
-
+*/
     public Long getNumeroConta() {
         return numeroConta;
     }
